@@ -1,0 +1,70 @@
+<div class="container">
+
+  <table class="table table-bordered table-striped">
+    <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Username</th>
+      <th scope="col">Email</th>
+      <th scope="col">Rate</th>
+      <th scope="col">Action</th>
+
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr *ngFor="let user of users" class="list-group-item-action">
+      <td><span>{{user.id}}</span></td>
+      <td><span>{{user.username}}</span></td>
+      <td><span>{{user.email}}</span></td>
+      <td><span>{{user.rate}}</span></td>
+    <td>
+      <button class="btn btn-sm btn-info" (click)="open(editProfileModal,user)">EDIT</button>
+      <button class="btn btn-sm btn-danger" (click)="delete(user)">DELETE</button>
+    </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+
+<ng-template #editProfileModal let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title" id="editProfileLabel">Edit Profile</h5>
+    <button type="button" class="close" (click)="modal.dismiss()" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  <div class="modal-body">
+    <form [formGroup]="editProfileForm" (ngSubmit)="onSubmit()">
+
+
+      <div class="form-group row">
+        <label for="username" class="col-sm-4 col-form-label">Username</label>
+        <div class="col-sm-8">
+          <input type="text" class="form-control" formControlName="username" id="username">
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="email" class="col-sm-4 col-form-label">Email</label>
+        <div class="col-sm-8">
+          <input type="email" class="form-control" formControlName="email" id="email">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="rate" class="col-sm-4 col-form-label">Rate</label>
+        <div class="col-sm-8">
+          <input type="number" class="form-control" formControlName="rate" id="rate">
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="modal.dismiss()">Close</button>
+        <button type="submit" class="btn btn-primary" value="submit">Save changes</button>
+      </div>
+
+    </form>
+  </div>
+</ng-template>

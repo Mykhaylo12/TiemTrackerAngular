@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="row">
+    <div class="offset-3"></div>
+    <div class="col-md-6">
+      <form name="form" #f="ngForm" (ngSubmit)="f.form.valid " novalidate class="feedback-form">
+
+        <div class="form-group">
+
+            <button type="submit" [disabled]="model.status" (click)="clockInOut(true, model.noteBody)" class="active btn btn-info float-left">
+              <span>CLOCK IN</span>
+            </button>
+
+
+            <button type="submit" [disabled]="!model.status" (click)="clockInOut(false, model.noteBody)" class="btn btn-info float-right">
+              <span>CLOCK OUT</span>
+            </button>
+
+          </div>
+
+        <br><br>
+
+        <p> Current time:  {{timer   | date: 'medium'}}</p>
+
+        <div class="form-group">
+          <textarea
+            id="notes"
+            class="form-control"
+            name="notes"
+            placeholder="Notes"
+            rows="2"
+            [(ngModel)]="model.noteBody">
+			    </textarea>
+        </div>
+
+
+      </form>
+    </div>
+    <div class="offset-3"></div>
+  </div>
+</div>

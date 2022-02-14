@@ -1,0 +1,58 @@
+<form (ngSubmit)="pickMonthYear(this.monthYear)" #infoForm="ngForm">
+  <ng-month-picker name="month" [(ngModel)]="this.monthYear"></ng-month-picker>
+  <button type="submit" class="active btn btn-info">Submit</button>
+</form>
+
+
+<div class="container">
+
+
+  <table class="table table-bordered table-striped">
+    <thead>
+    <tr>
+      <th scope="col">Date</th>
+      <th scope="col">In - Out</th>
+      <th scope="col">Sum</th>
+      <th scope="col">Notes</th>
+
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr *ngFor="let  report  of dailyReports" class="list-group-item-action">
+      <td><span>{{report.date}}</span></td>
+
+      <td>
+        <div *ngFor="let inOut of report.inOuts">
+          <span> {{ toTimeString(inOut.in) }}</span><span> - </span>
+          <span> {{ toTimeString(inOut.out) }} --></span>
+          <span> {{ inOut.difference }}</span></div>
+      </td>
+
+
+      <!--        <td> <span>{{report.inOuts}}</span></td>-->
+
+      <td><span>{{report.daySum}}</span>
+      <td><span>{{report.noteBody}}</span></td>
+
+    </tr>
+    </tbody>
+  </table>
+</div>
+<div *ngIf="monthSum">
+<div><span>Total month time: {{monthSum}}</span></div>
+<div><span>Rate: {{rate}}</span></div>
+<div><span>Month salary: {{salary}} $</span></div>
+</div>
+
+<!--<div *ngFor="let comment of (comments | async)>-->
+<!--   <div>{{ comment.text }}</div>-->
+
+<!--   <div *ngFor="let answer of toArray(comment.answers)">-->
+<!--{{ answer.text }}-->
+<!--</div-->
+<!--</div>-->
+
+
+
+
